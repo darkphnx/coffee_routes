@@ -1,0 +1,20 @@
+window.CoffeeRoutes = 
+  routes: <%= CoffeeRoutes.routes %>
+
+  path: (path, params)->
+    params ||= {}
+    if @routes[path]?
+      route = @routes[path]
+      path = route.path.replace(/\(.\:format\)$/, '')
+      path = path.replace /:[a-z0-9_\-]+/gi, (match)->
+        key = match.replace(/^:/, '')
+        if params[key]? then params[key] else match
+
+      if params['format']?
+        path += ".#{params['format']}"
+
+      path
+
+  method: (path)->
+    if @routes[path]?
+      @routes[path].verb
