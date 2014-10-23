@@ -28,10 +28,13 @@ Include coffee_routes in your application.coffeee
 
 You should now have the CoffeeRoutes object in your global javascript scope.
 
-To access a named route, just call the CoffeeRoute.path helper
+To access a named route, you can use the CoffeeRoute.path helper directly or you can use the global _path helper that is attached to window that you can call just like you would when writing a rails view.
 
 ```coffee
 CoffeeRoutes.path('project_item')
+=> "/projects/:project_id/item/:id"
+
+project_item_path()
 => "/projects/:project_id/item/:id"
 ```
 
@@ -39,6 +42,9 @@ To substitute in the parameter values pass in a hash.
 
 ```coffee
 CoffeeRoutes.path('project_item', {"project_id" : "project-awesome", "id" : 5})
+=> "/projects/project-awesome/items/5"
+
+project_item_path({"project_id" : "project-awesome", "id" : 5})
 => "/projects/project-awesome/items/5"
 ```
 

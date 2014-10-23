@@ -1,20 +1,34 @@
 window.CoffeeRoutes = 
+  # Store a routing table as created by ActionDispatch::Routing::JSONFormatter
   routes: <%= CoffeeRoutes.routes %>
 
+  # Calculate get the path from a name and substitute in any parameters
   path: (path, params)->
     params ||= {}
     if @routes[path]?
       route = @routes[path]
+      # Remote the (.:format) from the end of the path string
       path = route.path.replace(/\(.\:format\)$/, '')
+
+      # Replace the :params in the path for values from the params
       path = path.replace /:[a-z0-9_\-]+/gi, (match)->
         key = match.replace(/^:/, '')
         if params[key]? then params[key] else match
 
+      # Add a format parameter if one is passed in params
       if params['format']?
         path += ".#{params['format']}"
 
       path
 
+  # Grab the HTTP verb for the given named route
   method: (path)->
     if @routes[path]?
       @routes[path].verb
+
+# Create global function delcarations for each named route e.g. window.root_path
+for route_name, data of CoffeeRoutes.routes
+  do (route_name, data) ->
+    window["#{route_name}_path"] = (params)->
+      route = route_name += ""
+      CoffeeRoutes.path(route, params)
