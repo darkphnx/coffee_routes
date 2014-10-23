@@ -1,6 +1,6 @@
 # CoffeeRoutes
 
-Access your Rails named routes from coffeescript.
+Access your Rails named routes from coffeescript. Read about the making of [here](http://darkphnx.com/2014/10/23/coffeeroutes-named-routes-in-coffeescript/).
 
 ## Installation
 
