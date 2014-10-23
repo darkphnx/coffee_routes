@@ -30,5 +30,4 @@ window.CoffeeRoutes =
 for route_name, data of CoffeeRoutes.routes
   do (route_name, data) ->
     window["#{route_name}_path"] = (params)->
-      route = route_name += ""
-      CoffeeRoutes.path(route, params)
+      CoffeeRoutes.path(route_name, params)
