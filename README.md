@@ -1,5 +1,7 @@
 # CoffeeRoutes
 
+### NOTICE: CoffeeRoutes is now deprecated, I recommend the excellent [https://github.com/railsware/js-routes](JsRoutes instead).
+
 Access your Rails named routes from coffeescript. Read about the making of [here](http://darkphnx.com/2014/10/23/coffeeroutes-named-routes-in-coffeescript/).
 
 ## Installation
